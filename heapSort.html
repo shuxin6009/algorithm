@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>堆排序</title>
+</head>
+<body>
+<select id="deliver">
+    <option>111</option>
+    <option>333</option>
+    <option>444</option>
+    <option>444556</option>
+</select>
+<a href="###" id="task_submit">发送</a>
+<script src="http://code.jquery.com/jquery-1.9.1.js" ></script>
+<script>
+
+        var arr1 = [23,17,14,6,13,10,1,5,7,12];
+    var largest = 0,ifLarge = true;
+    //堆排序 判断数组是否是最大堆
+    function ifLargestFunc(arr){
+        for(var i=0;i<arr.length;i++){
+            var temp = arr[i];
+            var left = arr[2*(i+1)];//从1开始，所以要加1  左孩子2i
+            var right = arr[2*(i+1)+1];//右孩子  2i+1
+            if(temp>left&&temp>right){
+                largest = temp;
+                ifLarge = true;
+            }else{
+                ifLarge = false;
+               // break;
+            }
+            console.log(largest);
+        }
+        console.log(ifLarge);
+    }
+    ifLargestFunc(arr1);
+    var arr2 = [23,17,14,8,13,10,1,5,7,12];
+    ifLargestFunc(arr2);
+</script>
+</body>
+</html>

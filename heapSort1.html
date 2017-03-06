@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //初始数组
+        var arr = [23,17,14,6,13,10,1,5,7,12];
+
+        //排序
+        function sort(arr){
+            /**
+            console.log("初始数组:"+arr);
+            //构建堆
+            buildHeap(arr,arr.length);
+            console.log("堆化数组:"+arr);
+             **/
+            //排序
+            console.log("初始数组:"+arr);
+            sortHeap(arr);
+            console.log("排序数组:"+arr);
+        }
+
+        function sortHeap(arr){
+            for(var i=0;i<arr.length;i++){
+                //构建堆
+                buildHeap(arr,arr.length-i);
+                console.log("i="+i+"开始交换 "+arr+" 交换位置："+arr[0]+","+arr[arr.length-1-i])
+                swap(arr,0,arr.length-1-i);
+            }
+        }
+
+        /**
+         * 给定父节点n,子节点分别是2n,2n+1
+         * 最大堆为 v(n)>=v(2n) v(n)>=(2n+1)
+         * 最小堆为 v(n)<=v(2n) v(n)<=(2n+1)
+         * @param arr
+         * @param type 堆类型 0：最小 1:最大 默认0
+         */
+        function buildHeap(arr,heapSize,type){
+            for(var i=0;i<heapSize/2;i++){
+                var left = 2*i+1;
+                var right = 2*i +2;
+                //父节点小于左孩子
+                if(left<heapSize&&arr[i]<arr[left]){
+                    swap(arr,i,left);
+                }
+                //父节点小于右孩子
+                if(right<heapSize&&arr[i]<arr[right]){
+                    swap(arr,i,right);
+                }
+            }
+        }
+
+
+        function swap(arr,index1,index2){
+            var tmp = arr[index1];
+            arr[index1] =  arr[index2];
+            arr[index2] = tmp;
+        }
+
+
+        sort(arr);
+    </script>
+</body>
+</html>

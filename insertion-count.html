@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>插入排序算法</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /*插入排序算法*/
+        var arr = [1,4,3,0,10,33,2];
+        var index = 0;//数组里临时放的第i个元素的值，初始值设为0
+        console.log('排序前的arr--'+arr);
+        function fromSmallToBigSort(){
+            //从小到大顺序排放
+            for(var i=1;i<arr.length;i++){
+                index = arr[i] ;
+                for(var j=i-1;j>=0;j--){
+                    if(arr[j] > index){
+                        arr[j+1] = arr[j];
+                    }else{
+                        break;
+                    }
+                    arr[j] = index;
+                }
+                console.log('从小到大排序后的arr--'+arr);
+            }
+        }
+        function fromBigToSmallSort() {
+            //从大到小排放
+            for (var i = 1; i < arr.length; i++) {
+                index = arr[i];
+                var j = i - 1;
+                while(j>=0&&arr[j] < index) {
+                    arr[j+1] = arr[j];
+                    arr[j] = index;
+                    j--;
+                }
+                console.log('从大到小排序后的arr--' + arr);
+            }
+        }
+        fromBigToSmallSort();
+        /**插入排序
+         *两个参数
+         *@param arr 待排序数组
+         *@param sortType 排序类型，0升序，1降序 默认0
+         */
+        function insertionSort(arr,sortType) {
+            var temp = 0;
+            //校验
+            if(arr.length<1){
+                return arr;
+            }
+            //初始化排序类型
+            if(sortType!=0&&sortType!=1){
+                sortType = 0;
+            }
+            for (var i = 0; i < arr.length; i++) {
+                //拿出待排序的数字
+                temp = arr[i];
+                //开始对比迁移
+                var j = i - 1;
+                while(j>=0&&sortTypeCheck(sortType,arr,j,temp)){
+                    arr[j + 1] = arr[j];
+                    arr[j]= temp;
+                    j--;
+                }
+            }
+            console.log(arr);
+        }
+        /**
+         * 检测排序类型
+         */
+        function sortTypeCheck(sortType,arr,j,temp){
+            return sortType==0?arr[j] > temp:arr[j] < temp;
+        }
+        insertionSort(arr);
+        insertionSort(arr,1);//从大到小 1
+
+
+    </script>
+</body>
+</html>
