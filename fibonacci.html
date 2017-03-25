@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>费布那切数列</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*费布那切数列的公式：f(n)= f(n-1)+f(n-2); [0,1,1,2,3,5,8,...]
+    * @param arr f(n)的数组
+    *@param n 当前第n个变量，即f(n)
+    * @param num 要计算多少个数
+     * @param last 当前的上一个值 f(n-1)
+    *@param last2 当前的上上一个值 f(n-2)
+    * */
+    function fibonacci(num){
+        var arr = [],n = 0,last1 = 0,last2 = 0;
+        for(var i=0;i<=num;i++){
+            if(i==1){
+                n = 1;
+            }
+            if(i>=2){
+                last1 = arr[arr.length-1];
+                last2 = arr[arr.length-1 - 1];
+                n = last1 + last2;
+            }
+            arr.push(n);
+        }
+        console.log(arr);
+    }
+    fibonacci(20);
+
+    function fibonacci1() { //不用数组
+        var arr = [], n = 0, last1 = 0, last2 = 0;
+        for (var i = 0; i <= 20; i++) {
+            if(i==1){
+                n = 1;
+            }
+            if(i>=2){
+                n = total(i-2,i-1);
+            }
+            arr.push(n);
+        }
+        function total(a,b) {
+            return a + b;
+        }
+    }
+    fibonacci1();
+
+</script>
+</body>
+</html>

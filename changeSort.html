@@ -1,0 +1,103 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>关于颠倒排序以及随机数的平均值</title>
+</head>
+<body>
+<div ></div>
+<!--<script src="http://code.jquery.com/jquery-1.9.1.js" ></script>-->
+<script>
+    /*
+    * 1.求50个随机的介于[0-100]之间的整数的平均值
+    * @param num 随机数个数
+    * @param total 随机数总和
+    * @param average 平均值
+    * */
+    var num = 50;
+    var total = 0;
+    var randomArr = [];
+    //随机数的总和的平均值
+    function randomAverage(num){
+        for(var i=0;i<=num;i++) {
+            if(i<=num){
+                var random = Math.random() * 100;//[0,100]
+                random = Math.ceil(random);//[1,100]
+                total = total + random;
+                randomArr.push(random);
+            }
+        }
+        console.log('random—'+randomArr);
+        var average = Math.round(total / num);//平均值
+        console.log('total—'+total);
+        console.log('average—'+average);
+        return total;
+    }
+    //randomAverage(50);
+
+    /*2.给定一个数组，每次颠倒数组k个节点，最后多出的节点原样输出,并返回修改后的数组。
+    * 这个正整数小于等于数组的长度，如果节点的数量不是k的倍数，则最后多出的节点原样输出。
+    * 例如[1,2,3,4,5],k=2，则最后返回[2,1,4,3,5];k=3,返回[3,2,1,4,5];k=4,返回[4,3,2,1,5]。
+    *@param arr 数组
+    * @param k  每次要颠倒的节点个数
+    * @param newArr 修改后的数组
+    *
+    * */
+    var arr0 = [1,2,3,4,5,6,7,8,9,10,11];
+    var k = 3;
+    var arr = prompt('请输入一串数组,并用空格或逗号隔开');
+    if(arr==null){
+        arr = arr0;
+        console.log(arr);
+        descByArr(arr);
+    }else{
+        var arr_sp = arr.split(/ |,|，+/);
+        console.log(arr_sp);
+        descByArr(arr_sp);
+    }
+    //用数组
+    function descByArr(arr){
+        //排序开始
+        if(k>arr.length){
+            k = arr.length;
+        }
+        var quotient = Math.floor(arr.length / k);//向下取整
+        var mol = arr.length % k ;//余数
+        var newArr = [];
+        for(var j=0;j<quotient;j++){
+            var arr1= [];
+            for(var x=j*k;x<j*k+k;x++){
+                arr[x] = parseInt(arr[x]);
+                arr1.push(arr[x]);
+            }
+            console.log(arr1);
+            arr1 = arr1.reverse();
+            if(arr1.length>=1){
+                newArr = newArr.concat(arr1);
+            }
+        }
+        var aa = arr.slice(arr.length-mol,arr.length);
+        console.log(aa);
+        if(aa.length>=1){
+            newArr = newArr.concat(aa);
+        }
+        console.log('newArr-->'+newArr);
+        console.log('newArr长度-->'+newArr.length);
+    }
+
+
+    function desc(arr) {
+    }
+   //互换位置
+    function disOrder(arr,i,j){
+        var temp = arr[j];
+        arr[j] = arr[j-1];
+        arr[j-1] = temp;
+        return arr;
+    }
+   // desc(arr);
+
+</script>
+</body>
+</html>
